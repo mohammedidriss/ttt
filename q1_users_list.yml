@@ -1,0 +1,10 @@
+users:
+ - name: fred
+   group: developer
+ - name: greg
+   group: manager 
+ - name: bob
+   group: developer
+ - name: sally 
+   group: developer
+  

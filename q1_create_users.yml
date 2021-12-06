@@ -1,0 +1,28 @@
+---
+- name: add groups
+  hosts: all
+  become: yes
+  vars_files:
+    - q1_users_list.yml
+  tasks: 
+    - name: add developer accounts
+      group:
+        name: "{{item.group}}"
+        state: present
+      with_items: "{{users}}"
+- name: create user accounts
+  hosts: all
+  become: yes
+  vars_files:
+    - q1_users_list.yml
+
+  tasks:
+    - name: Add user accounts
+      user:
+        name: "{{item.name}}"
+        password: "{{ 'ablerate' | password_hash('sha512') }}"
+        append: yes
+      with_items: "{{users}}"
+
+
+
